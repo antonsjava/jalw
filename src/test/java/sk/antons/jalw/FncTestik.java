@@ -36,15 +36,15 @@ public class FncTestik {
         jalw = SdkJalw.jalw(logger).withHistory().start("simple");
         for(int i = 0; i < 100; i++) jalw.debug("simple message");
         jalw.info("done");
-        jalw.printHistoryToError();
+        jalw.historyToError();
         jalw = SdkJalw.jalw(logger).withHistory().start("slsf");
         for(int i = 0; i < 100; i++)    jalw.debug("slsf message {} - {}", "here", 1);
         jalw.info("done");
-        jalw.printHistoryToError();
+        jalw.historyToError();
         jalw = SdkJalw.jalw(logger).withHistory().start("printf");
         for(int i = 0; i < 100; i++)    jalw.debugf("printf message %s - %s", "here", 1);
         jalw.info("done");
-        jalw.printHistoryToError();
+        jalw.historyToError();
         
         exception();
 
