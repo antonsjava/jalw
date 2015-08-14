@@ -26,7 +26,7 @@ in log statements.
 
 ## Main features
 
-Jalw helps you with following things
+Jalw helps you with following things.
  
 	- Simplify adding method name information to each log statement. Method 
 	  name should be provided only once.
@@ -44,22 +44,26 @@ Jalw helps you with following things
 
 ## Wrapping
 
-Jalw requires some real logging API for logging. Like Slf4j or Log3j or ...
+Jalw requires some real logging API for logging. Like Slf4j or Log4j or ...
 You can simply write your own wrapper over your logging API. Jalw brings 
 JalwLogger interface, which abstracts the logging API. It requires two method 
 for each log level 
+
  - boolean isXXXEnabled() - which returns true if level XXX is opened for logging.
- - void XXXE(String message) - which logs message to XXX level
+ - void XXX(String message) - which logs message to XXX level
+
 It simplifies requiremets om logging API, but force Jalw to format logged 
 messages to string form. 
 
 Jalw defines following levels of logging
+
  - trace
  - debug
  - info
  - warn
  - error
  - fatal
+
 All this levels must be somehow mapped to real logging system using instance of 
 JalwLogger and it is provided to Jalw for real logging. 
 
