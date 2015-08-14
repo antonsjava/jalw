@@ -53,7 +53,7 @@ public class FncTestik {
         jalw.end("param je null");
 
         //jalw.check(true).a("nieco sa po...:").info();
-        jalw.checkEmpty(new byte[0]).a("nieco sa po...:byte").info(true);
+        jalw.checkEmpty(new byte[0]).a("nieco sa po...:byte ").a(123).info(true);
     }
         
 
