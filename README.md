@@ -73,7 +73,6 @@ directly or as example for your own implementation
  - CommonsJalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/CommonsJalw.java
  - SdkJalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/SdkJalw.java 
  - Log4j12Jalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/Log4j12Jalw.java 
- - LogbackJalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/LogbackJalw.java 
 (See maven chapter for dependence issues)
 
 All Implementations brings JalwLogger implementation and one factory method for creation Jalw instances.
@@ -201,6 +200,22 @@ This is replacement for
    </dependency>
 ```
 
-Jalw has implementation dependences to external libs. They are marked as provided so if you wan to use 
-Slf4j you must add dependency for Slf4j in your own project.
+Jalw has implementation dependences to external libs. They are marked as provided so 
+if you want to use Slf4j you must add dependency for Slf4j in your own project. To avoid 
+eny version problems exclude all dependences. 
+
+```
+   <dependency>
+      <groupId>com.github.antonsjava</groupId>
+      <artifactId>jalw</artifactId>
+      <version>1.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+   </dependency>
+```
+
 

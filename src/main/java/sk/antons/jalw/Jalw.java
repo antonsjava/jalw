@@ -127,9 +127,11 @@ public class Jalw {
     protected Object[] params = null;
     
     protected List<Event> history = null;
+    protected boolean historyNotInitiated = true;
     protected boolean historyEnabled = false;
     protected int historySize = 50;
 
+    protected boolean noMethodInfo = false;
     
     protected long starttime = System.currentTimeMillis();
     
@@ -139,11 +141,11 @@ public class Jalw {
      */
     public Jalw(JalwLogger logger) {
         this.logger = logger;
-        withHistory();
     } 
 
 
     private void addMethodInfo(StringBuilder sb, long time) {
+        if(noMethodInfo) return;
         sb.append("  {").append(methodName);
         sb.append(" - ms: ").append(time - this.starttime);
         sb.append('}');    
@@ -222,7 +224,8 @@ public class Jalw {
             else if(level == JalwLogger.ERROR) logger.error(message);
             else if(level == JalwLogger.FATAL) logger.fatal(message);
         }
-        
+       
+        if(historyNotInitiated) withHistory();
         if(historyEnabled) {
             if(history.size() < historySize) {
                 Event e = new Event();
@@ -312,6 +315,7 @@ public class Jalw {
      * @return this Jalw instance
      */
     public Jalw withHistory(int size) {
+        historyNotInitiated = false;
         historyEnabled = true;
         historySize = size;
         if(history == null) history = new ArrayList<Event>();
@@ -323,7 +327,17 @@ public class Jalw {
      * @return this Jalw instance
      */
     public Jalw withoutHistory() {
+        historyNotInitiated = false;
         historyEnabled = false;
+        return this;
+    }
+    
+    /**
+     * Stops adding method info to logged messages
+     * @return this Jalw instance
+     */
+    public Jalw noMethodInfo() {
+        noMethodInfo = true;
         return this;
     }
     
