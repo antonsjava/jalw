@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import sk.antons.jalw.util.Appender;
 import sk.antons.jalw.util.Checker;
+import sk.antons.jalw.util.Show;
 import sk.antons.jalw.util.StackTrace;
 
 /**
@@ -878,6 +879,19 @@ public class Jalw {
     }
     
 
+    /**
+     * Creates an factory instace for some helper functionalities. 
+     * Like collection or array size of list.
+     * 
+     * It van be used like
+     * <pre>
+     *    jalv.debug("resulting lis is {}", Jalw.show().list(anList));
+     * </pre>
+     * @return Factory instance
+     */
+    public static Show show() {
+        return new Show();
+    }
 
 
     public Checker checkEmpty(Object oblect) {

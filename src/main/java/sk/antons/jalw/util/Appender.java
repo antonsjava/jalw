@@ -168,7 +168,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(Collection value) {
-        objects.add(new Size(value));
+        objects.add(value == null?null:value.size());
         return this;
     }
     
@@ -178,7 +178,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(Map value) {
-        objects.add(new Size(value));
+        objects.add(value == null?null:value.size());
         return this;
     }
 
@@ -188,7 +188,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(Object[] value) {
-        objects.add(new Size(value));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -198,7 +198,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(boolean[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -208,7 +208,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(byte[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -218,7 +218,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(char[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -228,7 +228,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(short[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -238,7 +238,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(int[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -248,7 +248,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(long[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -258,7 +258,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(float[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -268,7 +268,7 @@ public class Appender {
      * @return this instance
      */
     public Appender size(double[] value) {
-        objects.add(new Size(new PrimitiveArray(value)));
+        objects.add(value == null?null:value.length);
         return this;
     }
 
@@ -294,81 +294,6 @@ public class Appender {
             sb.append(object);
         }
         return sb.toString();
-    }
-    
-
-    private static class Listing {
-        Collection coll = null;
-        Object[] arr = null;
-        Map map = null;
-        PrimitiveArray primitives = null;
-        public Listing(Collection coll) {
-            this.coll = coll;
-        }
-        public Listing(Object[] arr) {
-            this.arr = arr;
-        }
-        public Listing(Map map) {
-            this.arr = arr;
-        }
-        public Listing(PrimitiveArray primitives) {
-            this.primitives = primitives;
-        }
-
-        @Override
-        public String toString() {
-            if((coll == null) && (arr == null)) return null;
-            StringBuilder sb = new StringBuilder();
-            int num = 0;
-            if(coll != null) {
-                for(Object object : coll) {
-                    sb.append("item[").append(num++).append("] = ").append(object).append('\n');
-                }
-            } else if(arr != null) {
-                for(Object object : arr) {
-                    sb.append("item[").append(num++).append("] = ").append(object).append('\n');
-                }
-            } else if(map != null) {
-                for(Object object : map.entrySet()) {
-                    Map.Entry entry = (Map.Entry) object;
-                    sb.append("item[").append(entry.getKey()).append("] = ").append(entry.getValue()).append('\n');
-                }
-            } else if(primitives != null) {
-                for(int i = 0; i < primitives.size(); i++) {
-                    Object object = primitives.get(i);
-                    sb.append("item[").append(num++).append("] = ").append(object).append('\n');
-                }
-            }
-            return sb.toString();
-        }
-    }
-
-    private static class Size {
-        Collection coll = null;
-        Object[] arr = null;
-        Map map = null;
-        PrimitiveArray primitives = null;
-        public Size(Collection coll) {
-            this.coll = coll;
-        }
-        public Size(Object[] arr) {
-            this.arr = arr;
-        }
-        public Size(Map map) {
-            this.map = map;
-        }
-        public Size(PrimitiveArray primitives) {
-            this.primitives = primitives;
-        }
-
-        @Override
-        public String toString() {
-            if(coll != null) return String.valueOf(coll.size());
-            else if(arr != null) return String.valueOf(arr.length);
-            else if(map != null) return String.valueOf(map.size());
-            else if(primitives != null) return String.valueOf(primitives.size());
-            return null;
-        }
     }
 
 }
