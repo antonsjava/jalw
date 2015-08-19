@@ -885,7 +885,7 @@ public class Jalw {
      * 
      * It van be used like
      * <pre>
-     *    jalv.debug("resulting lis is {}", Jalw.show().list(anList));
+     *    jalv.debug("resulting list is {}", Jalw.show().list(aList));
      * </pre>
      * @return Factory instance
      */

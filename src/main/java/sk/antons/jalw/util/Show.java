@@ -242,5 +242,14 @@ public class Show {
         return String.valueOf(value.length);
     }
 
+    /**
+     * Shows "null" or "not null" for given object;
+     * @param value - null checked value
+     * @return "null" or "not null" string
+     */
+    public String isNull(Object value) {
+        if(value == null) return "null";
+        return "not null";
+    }
 
 }
