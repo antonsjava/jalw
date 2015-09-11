@@ -27,7 +27,7 @@ in log statements.
 ## Main features
 
 Jalw helps you with following things.
- 
+ -
 	- Simplify adding method name information to each log statement. Method 
 	  name should be provided only once.
  - Provides execution time to each log statement. It simplify finding slow 
@@ -189,13 +189,13 @@ This is replacement for
 				throw e;
 		}
 ```
-## Ecample
+## Example
 
 I hope it is clear what Jalw brings. So if you must use any log API you don't like 
 and you are familiar with Jalw API I is necessary to write only one simple class 
 and use it for instantiating Jalw. 
 
-This is ecample for Liferay logging API
+This is example for Liferay logging API
 ```java
 import com.liferay.portal.kernel.log.Log;
 import sk.antons.jalw.Jalw;
