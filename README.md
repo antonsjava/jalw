@@ -27,19 +27,19 @@ in log statements.
 ## Main features
 
 Jalw helps you with following things.
- -
-	- Simplify adding method name information to each log statement. Method 
-	  name should be provided only once.
+
+ - Simplify adding method name information to each log statement. Method 
+   name should be provided only once.
  - Provides execution time to each log statement. It simplify finding slow 
-	  methods.
+   methods.
  - Provides API for formating log messages independent from real logging API 
-	  used. So you can use your ussual log formatting also in projects where you 
-			cannot use logging API you want. 
+   used. So you can use your ussual log formatting also in projects where you 
+   cannot use logging API you want. 
  - Allows you (in limited way) to log messages, which was not logged before 
-	  because log level was not allowed. It is usefull in case of some unexpected 
-			exceptions.
+   because log level was not allowed. It is usefull in case of some unexpected 
+   exceptions.
  - allows you to throws RuntimeException when some method input condition is 
-	  reached.
+   reached.
 
 
 ## Wrapping
@@ -86,13 +86,13 @@ and of the method in following way
   Logger logger = Logger.getLogger(MyClass.class);
   ...
   private void aMethod(String text, int level) {
-      Jalw jalw = SdkJalw.jalw(logger).start("aMethod", text, level);
-						if(text == null) {
-         jalw.end("The text param is empty");
-         return;
-						}
+    Jalw jalw = SdkJalw.jalw(logger).start("aMethod", text, level);
+    if(text == null) {
+      jalw.end("The text param is empty");
+      return;
+    }
   ...
-      jalw.end();
+    jalw.end();
   }
 ```
 It produces trace output like 
@@ -121,8 +121,8 @@ Provided examples are for debug level, but it is same for all levels.
 You can ask if logging is enabled
 ```java
   if(jalw.debug()) {
-		...
-		}  
+  ...
+  }  
 ```
 You can log simple strings or any object toString().
 ```java
@@ -182,12 +182,12 @@ it is IllegalStateException. you can use something like
 This is replacement for 
 ```java
   if((list == null) || list.isEmpty()) {
-				IllegalStateException e = new IllegalStateException("The input list is empty.");
-				jalw.error(e.toString());
-				jalw.error(e)
-				jalw.end()
-				throw e;
-		}
+    IllegalStateException e = new IllegalStateException("The input list is empty.");
+    jalw.error(e.toString());
+    jalw.error(e)
+    jalw.end()
+    throw e;
+  }
 ```
 ## Example
 
