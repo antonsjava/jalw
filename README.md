@@ -189,6 +189,48 @@ This is replacement for
 				throw e;
 		}
 ```
+## Ecample
+
+I hope it is clear what Jalw brings. So if you must use any log API you don't like 
+and you are familiar with Jalw API I is necessary to write only one simple class 
+and use it for instantiating Jalw. 
+
+This is ecample for Liferay logging API
+```java
+import com.liferay.portal.kernel.log.Log;
+import sk.antons.jalw.Jalw;
+import sk.antons.jalw.JalwLogger;
+
+public class LRJalw {
+    public static Jalw jalw(Log logger) {
+        return new Jalw(new LRJalwLogger(logger));
+    }
+    
+    private static class LRJalwLogger implements JalwLogger {
+
+        private Log logger = null;
+        public LRJalwLogger(Log logger) {
+            this.logger = logger;
+        }         
+        
+        public boolean isTtraceEnabled() { return logger.isTraceEnabled(); }
+        public boolean isDebugEnabled() { return logger.isDebugEnabled(); }
+        public boolean isInfoEnabled() { return logger.isInfoEnabled(); }
+        public boolean isWarnEnabled() { return logger.isWarnEnabled(); }
+        public boolean isErrorEnabled() { return logger.isErrorEnabled(); }
+        public boolean isFatalEnabled() { return logger.isErrorEnabled(); }
+
+        public void trace(String msg) { logger.debug(msg); }
+        public void debug(String msg) { logger.debug(msg); }
+        public void info(String msg) { logger.info(msg); }
+        public void warn(String msg) { logger.warn(msg); }
+        public void error(String msg) { logger.error(msg); }
+        public void fatal(String msg) { logger.error(msg); }
+
+        
+    }
+}
+```
 
 ## Maven usage
 
