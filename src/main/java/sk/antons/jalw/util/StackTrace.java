@@ -16,6 +16,9 @@
 
 package sk.antons.jalw.util;
 
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+
 /**
  * helper class for generating  exception stack trace.
  *
@@ -30,12 +33,13 @@ public class StackTrace {
         this.throwable = throwable;
     }
     
+    
     private String st() {
         if(throwable == null) return null;
-
-        Throwable t = throwable;
         StringBuilder sb = new StringBuilder();
+        Throwable t = throwable;
         while(t != null) {
+            
             if(sb.length() > 0) sb.append("  Caused by: ");
             sb.append(t).append('\n');
             StackTraceElement[] elements = t.getStackTrace();
@@ -45,9 +49,23 @@ public class StackTrace {
                     sb.append("\tat ").append(elements[i]).append('\n');
                 }
             }
+
+            if(t instanceof SQLException) {
+                t = ((SQLException)t).getNextException();
+                if(t != null) {
+                    if(sb.length() > 0) sb.append("  Caused by: ");
+                    sb.append(t).append('\n');
+                    elements = t.getStackTrace();
+                    if(elements != null) {
+                        for(int i = 0; i < elements.length; i++) {
+                            if((limit > 0) && (i >= limit)) break;
+                            sb.append("\tat ").append(elements[i]).append('\n');
+                        }
+                    }
+                }
+            }
             t = t.getCause();
         }
-
         return sb.toString();
     }
 
