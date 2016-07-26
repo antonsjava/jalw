@@ -51,11 +51,11 @@ public class StackTrace {
             }
 
             if(t instanceof SQLException) {
-                t = ((SQLException)t).getNextException();
-                if(t != null) {
+                Throwable tt = ((SQLException)t).getNextException();
+                if(tt != null) {
                     if(sb.length() > 0) sb.append("  Caused by: ");
-                    sb.append(t).append('\n');
-                    elements = t.getStackTrace();
+                    sb.append(tt).append('\n');
+                    elements = tt.getStackTrace();
                     if(elements != null) {
                         for(int i = 0; i < elements.length; i++) {
                             if((limit > 0) && (i >= limit)) break;
