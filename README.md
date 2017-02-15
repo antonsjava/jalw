@@ -261,3 +261,8 @@ eny version problems exclude all dependences.
 ```
 
 
+## OSGI usage (Karaf)
+
+   bundle:install mvn:com.github.antonsjava/jalw/1.1
+   bundle:start com.github.antonsjava.jalw/1.1.0
+

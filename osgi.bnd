@@ -1,0 +1,10 @@
+
+Export-Package: \
+ sk.antons.jalw; version="1.1.0"; provider=antons, \
+ sk.antons.jalw.util; version="1.1.0"; provider=antons
+
+Import-Package: \
+ org.apache.commons.logging; resolution:=optional, \
+ org.apache.log4j; resolution:=optional, \
+ org.slf4j; resolution:=optional
+
