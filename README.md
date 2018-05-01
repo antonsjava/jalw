@@ -172,6 +172,38 @@ If message was not logged because it was not enabled the messages are formated i
 logging the history. So all abjects are printed in state as they are in history log time. 
 So history can differ from state as if it was logged normally.
 
+## Thread context
+
+In some cases you want to 'store' some traces of execution flow in thread. it is usefull 
+when you have code with direct request processing. You can determine start of processing 
+for context cleaning. And when you store some 'key' informations usefull for debugging 
+application. 
+
+This information is then prointed in historyToError methods or you can process it by your 
+own way.
+
+For example you have some REST API interface where you obtain some id of modified object
+So you clean context store this information
+```java
+  jalw.contextClean();
+  jalw.context("REST update.{}", path);
+```
+In other method you can map path to tech {db} id of object to be modified
+```java
+  jalw.context("DB content id: {}", object.getId());
+```
+Then in your exception handling code You van obtain previous information in you debug log.
+```java
+  } catch (Exception e) {
+     jalw.historyToError();
+  }
+```
+Or you can priunt it by yourself.
+```java
+  jalw.info("traces: {}", jalw.contextString());
+```
+
+
 ## Input condition check 
 
 If you like to check method input condition and throw an exception and you don;t mind that 
