@@ -36,6 +36,7 @@
     </developers>
 
     <properties>
+        <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 	
     <distributionManagement>
