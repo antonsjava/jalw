@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
+import sk.antons.jalw.ctx.ThreadCtx;
 import sk.antons.jalw.util.Appender;
 import sk.antons.jalw.util.Checker;
 import sk.antons.jalw.util.Show;
@@ -247,11 +248,12 @@ public class Jalw {
     
     private String history() {
         StringBuilder sb = new StringBuilder();
-        sb.append(">> --- method history start - " + methodName + " -----------\n");
+        if(context()) sb.append(">> --- thread context start -----------\n").append(contextString()).append("\n");
+        sb.append(">> --- method history start - ").append(methodName).append(" -----------\n");
         for(Event event : history) {
-            sb.append(">> --- " + format(event.msg, event.params, event.printable, event.time, event.type) + "\n" );
+            sb.append(">> --- ").append(format(event.msg, event.params, event.printable, event.time, event.type)).append("\n");
         }
-        sb.append(">> --- method history end  - " + methodName + " -----------");
+        sb.append(">> --- method history end  - ").append(methodName).append(" -----------");
         return sb.toString();
     }
     
@@ -778,8 +780,84 @@ public class Jalw {
         addEvent(JalwLogger.FATAL, msg, params, null, TYPE_PRINTF);
         return this;
     }
+
+
+
+    /**
+     * Cleans current thread context.
+     * @return this Jalw instance
+     */
+    public Jalw contextClean() {
+        ThreadCtx.clean();
+        return this;
+    }
+    
+    /**
+     * Cleans current thread context.
+     * @param max maximum stored context values
+     * @return this Jalw instance
+     */
+    public Jalw contextClean(int max) {
+        ThreadCtx.clean(max);
+        return this;
+    }
+    
+    /**
+     * Returns true if context is not empty.
+     * @return true for non empty context
+     */
+    public boolean context() {
+        return !ThreadCtx.isEmpty();
+    }
+    
+    /**
+     * Context values in string form
+     * @return string representation of thread context
+     */
+    public String contextString() {
+        return ThreadCtx.string();
+    }
     
 
+    /**
+     * Context values in list form
+     * @return list representation of thread context
+     */
+    public List<String> contextList() {
+        return ThreadCtx.list();
+    }
+    
+    /**
+     * Stores new value to thread context
+     * @param value to be stored in context
+     * @return this Jalw instance
+     */
+    public Jalw context(String value) {
+        ThreadCtx.add(value);
+        return this;
+    }
+    
+    /**
+     * Stores new value to thread context
+     * @param value to be stored in context
+     * @param params to be added to value param in slf format
+     * @return this Jalw instance
+     */
+    public Jalw context(String value, Object... params) {
+        ThreadCtx.add(format(value, params));
+        return this;
+    }
+ 
+    /**
+     * Stores new value to thread context
+     * @param value to be stored in context
+     * @param params to be added to value param in printf format
+     * @return this Jalw instance
+     */
+    public Jalw contextf(String value, Object... params) {
+        ThreadCtx.add(formatf(value, params));
+        return this;
+    }
 
 
     /**
