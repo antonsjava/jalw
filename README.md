@@ -268,9 +268,9 @@ public class LRJalw {
 
 ```
    <dependency>
-      <groupId>com.github.antonsjava</groupId>
+      <groupId>io.github.antonsjava</groupId>
       <artifactId>jalw</artifactId>
-      <version>1.0</version>
+      <version>LASTVERSION</version>
    </dependency>
 ```
 
@@ -280,9 +280,9 @@ eny version problems exclude all dependences.
 
 ```
    <dependency>
-      <groupId>com.github.antonsjava</groupId>
+      <groupId>io.github.antonsjava</groupId>
       <artifactId>jalw</artifactId>
-      <version>1.0</version>
+      <version>LASTVERSION</version>
       <exclusions>
         <exclusion>
           <groupId>*</groupId>
