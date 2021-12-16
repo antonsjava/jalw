@@ -44,7 +44,7 @@ Jalw helps you with following things.
 
 ## Wrapping
 
-Jalw requires some real logging API for logging. Like Slf4j or Log4j or ...
+Jalw requires some real logging API for logging. Like Slf4j or ...
 You can simply write your own wrapper over your logging API. Jalw brings 
 JalwLogger interface, which abstracts the logging API. It requires two method 
 for each log level 
@@ -72,7 +72,7 @@ directly or as example for your own implementation
  - SystemOutJalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/SystemOutJalw.java
  - CommonsJalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/CommonsJalw.java
  - SdkJalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/SdkJalw.java 
- - Log4j12Jalw https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/Log4j12Jalw.java 
+ - Log4j12Jalw (not provided anymore) https://github.com/antonsjava/jalw/blob/master/src/main/java/sk/antons/jalw/Log4j12Jalw.java 
 (See maven chapter for dependence issues)
 
 All Implementations brings JalwLogger implementation and one factory method for creation Jalw instances.

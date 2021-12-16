@@ -16,7 +16,7 @@
 
 package sk.antons.jalw;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 /**
  * Factory class for creating Jalw instances for Log4j logging framework.
@@ -28,36 +28,36 @@ import org.apache.log4j.Logger;
  */
 public class Log4j12Jalw {
 
-    /**
-     * Creates Jalw instance.
-     * @param logger - external library logger instance
-     * @return  new creates Jalw instance
-     */
-    public static Jalw jalw(Logger logger) {
-        return new Jalw(new Log4j12JalwLogger(logger));
-    }
-    
-    private static class Log4j12JalwLogger implements JalwLogger {
-
-        private Logger logger = null;
-        public Log4j12JalwLogger(Logger logger) {
-            this.logger = logger;
-        }         
-        
-        public boolean isTtraceEnabled() { return logger.isDebugEnabled(); }
-        public boolean isDebugEnabled() { return logger.isDebugEnabled(); }
-        public boolean isInfoEnabled() { return logger.isInfoEnabled(); }
-        public boolean isWarnEnabled() { return true; }
-        public boolean isErrorEnabled() { return true; }
-        public boolean isFatalEnabled() { return true; }
-
-        public void trace(String msg) { logger.debug(msg); }
-        public void debug(String msg) { logger.debug(msg); }
-        public void info(String msg) { logger.info(msg); }
-        public void warn(String msg) { logger.warn(msg); }
-        public void error(String msg) { logger.error(msg); }
-        public void fatal(String msg) { logger.fatal(msg); }
-
-        
-    }
+//     /**
+//      * Creates Jalw instance.
+//      * @param logger - external library logger instance
+//      * @return  new creates Jalw instance
+//      */
+//     public static Jalw jalw(Logger logger) {
+//         return new Jalw(new Log4j12JalwLogger(logger));
+//     }
+//     
+//     private static class Log4j12JalwLogger implements JalwLogger {
+// 
+//         private Logger logger = null;
+//         public Log4j12JalwLogger(Logger logger) {
+//             this.logger = logger;
+//         }         
+//         
+//         public boolean isTtraceEnabled() { return logger.isDebugEnabled(); }
+//         public boolean isDebugEnabled() { return logger.isDebugEnabled(); }
+//         public boolean isInfoEnabled() { return logger.isInfoEnabled(); }
+//         public boolean isWarnEnabled() { return true; }
+//         public boolean isErrorEnabled() { return true; }
+//         public boolean isFatalEnabled() { return true; }
+// 
+//         public void trace(String msg) { logger.debug(msg); }
+//         public void debug(String msg) { logger.debug(msg); }
+//         public void info(String msg) { logger.info(msg); }
+//         public void warn(String msg) { logger.warn(msg); }
+//         public void error(String msg) { logger.error(msg); }
+//         public void fatal(String msg) { logger.fatal(msg); }
+// 
+//         
+//     }
 }
